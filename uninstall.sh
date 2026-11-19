@@ -16,7 +16,8 @@ ALL=0
 [ "${1:-}" = "--tudo" ] && ALL=1
 
 rm -f "$HOME/.local/bin/$APP_ID" "$APPS/$APP_ID.desktop" \
-      "${XDG_DATA_HOME:-$HOME/.local/share}/icons/hicolor/scalable/apps/$APP_ID.svg"
+      "${XDG_DATA_HOME:-$HOME/.local/share}/icons/hicolor/scalable/apps/$APP_ID.svg" \
+      "${XDG_DATA_HOME:-$HOME/.local/share}/icons/Arasaka/scalable/apps/$APP_ID.svg"
 rm -rf "$DATA/app" "$DATA/venv"
 ok "app removido"
 
