@@ -19,6 +19,7 @@ from PySide6.QtWidgets import (QApplication, QButtonGroup, QCheckBox, QComboBox,
                                QVBoxLayout, QWidget)
 
 from . import core
+from . import fx
 from .core import APP_NAME, VERSION, App, Command, Config, Container
 
 RED = QColor(227, 18, 31)
@@ -1362,6 +1363,8 @@ def main(argv: list[str] | None = None):
     app.setWindowIcon(QIcon(str(core.ASSETS / "arasaka-bridge.svg")))
     open_file = next((a for a in argv[1:] if not a.startswith("-") and core.is_windows_file(a)), None)
     win = MainWindow(Config(), open_file)
+    # visual Cyberpunk (CRT, glitch, inicialização, barra de status); sem a tela de inicialização nas prévias
+    fx.install(win, name="ARASAKA BRIDGE", icon=core.ASSETS / "arasaka-bridge.svg", boot=not any(a.startswith("--screenshot=") for a in argv))
     win.show()
     QTimer.singleShot(0, lambda: win.splitter.setSizes([int(win.height() * 0.8), int(win.height() * 0.2)]))
     shot = next((a.split("=", 1)[1] for a in argv if a.startswith("--screenshot=")), None)
